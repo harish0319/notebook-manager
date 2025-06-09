@@ -1,7 +1,7 @@
 import { useNotes } from "../Notes/NotesContext";
 import Form from "../Input/Form";
 
-const Header = (props) => {
+const Header = () => {
     const { setShowModal } = useNotes();
 
     return (

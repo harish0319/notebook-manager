@@ -1,44 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNotes } from '../Notes/NotesContext';
+import './NoteModal.css';
 
 const NoteModal = () => {
-  const { setShowModal, addNote } = useNotes();
+  const { setShowModal, addNote, editNote, editingNote } = useNotes();
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
 
-  const handleAdd = () => {
+  useEffect(() => {
+    if (editingNote) {
+      setTitle(editingNote.title);
+      setDesc(editingNote.desc || '');
+    }
+  }, [editingNote]);
+
+  const handleSubmit = () => {
     if (!title.trim()) return;
-    addNote({ title, desc });
+    
+    if (editingNote) {
+      editNote(editingNote.id, { title, desc });
+    } else {
+      addNote({ title, desc });
+    }
+    
     setTitle('');
     setDesc('');
     setShowModal(false);
   };
 
   return (
-    <div style={{
-      position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-      background: 'rgba(0,0,0,0.5)', display: 'flex',
-      justifyContent: 'center', alignItems: 'center'
-    }}>
-      <div style={{ background: '#fff', padding: '20px', width: '300px', borderRadius: '8px' }}>
-        <h2>Add New Note</h2>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <h2 className="modal-title">{editingNote ? 'Edit Note' : 'Add New Note'}</h2>
         <input
           type="text"
           placeholder="Note Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          className="modal-input"
         />
         <textarea
           placeholder="Description"
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
+          className="modal-textarea"
           rows={4}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
         ></textarea>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <button onClick={handleAdd}>Add to Book</button>
-          <button onClick={() => setShowModal(false)}>Close</button>
+        <div className="modal-actions">
+          <button 
+            onClick={handleSubmit}
+            className="modal-button save"
+          >
+            {editingNote ? 'Save Changes' : 'Add Note'}
+          </button>
+          <button 
+            onClick={() => setShowModal(false)}
+            className="modal-button cancel"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

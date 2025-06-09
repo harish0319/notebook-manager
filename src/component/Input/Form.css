@@ -1,0 +1,86 @@
+.form-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.search-section {
+  margin-bottom: 20px;
+}
+
+.form-search-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.notes-counts {
+  display: flex !important;
+  gap: 20px;
+  font-size: 16px;
+  color: #222 !important;
+  background: #ffe !important;
+  border: 1px solid #ccc !important;
+  padding: 8px !important;
+  margin-bottom: 10px !important;
+  border-radius: 4px;
+}
+.notes-counts div {
+  margin-bottom: 2px;
+}
+
+.notes-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.note-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.note-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.note-title {
+  font-size: 1.1em;
+  color: #333;
+}
+
+.note-desc {
+  margin: 8px 0;
+  color: #666;
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

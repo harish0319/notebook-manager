@@ -15,6 +15,7 @@ export const NotesProvider = ({ children }) => {
   });
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [editingNote, setEditingNote] = useState(null);
 
   useEffect(() => {
     try {
@@ -30,6 +31,20 @@ export const NotesProvider = ({ children }) => {
     setNotes(updated);
   };
 
+  const editNote = (id, updatedNote) => {
+    if (!updatedNote || !updatedNote.title) return;
+    const updated = notes.map(note => 
+      note.id === id ? { ...updatedNote, id } : note
+    );
+    setNotes(updated);
+    setEditingNote(null);
+  };
+
+  const deleteNote = (id) => {
+    const updated = notes.filter(note => note.id !== id);
+    setNotes(updated);
+  };
+
   return (
     <NotesContext.Provider
       value={{
@@ -37,8 +52,12 @@ export const NotesProvider = ({ children }) => {
         search,
         setSearch,
         addNote,
+        editNote,
+        deleteNote,
         showModal,
-        setShowModal
+        setShowModal,
+        editingNote,
+        setEditingNote
       }}
     >
       {children}
