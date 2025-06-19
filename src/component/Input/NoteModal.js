@@ -3,7 +3,7 @@ import { useNotes } from '../Notes/NotesContext';
 import './NoteModal.css';
 
 const NoteModal = () => {
-  const { setShowModal, addNote, editNote, editingNote } = useNotes();
+  const { setShowModal, addNote, editNote, editingNote , notes} = useNotes();
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
 
@@ -14,15 +14,41 @@ const NoteModal = () => {
     }
   }, [editingNote]);
 
+  // const handleSubmit = () => {
+  //   if (!title.trim()) return;
+    
+  //   if (editingNote) {
+  //     editNote(editingNote.id, { title, desc });
+  //   } else {
+  //     addNote({ title, desc });
+  //   }
+    
+  //   setTitle('');
+  //   setDesc('');
+  //   setShowModal(false);
+  // };
+
   const handleSubmit = () => {
-    if (!title.trim()) return;
-    
-    if (editingNote) {
-      editNote(editingNote.id, { title, desc });
-    } else {
-      addNote({ title, desc });
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) return;
+
+    // Check if title already exists (case-insensitive)
+    const titleExists = notes.some(note =>
+      note.title.toLowerCase() === trimmedTitle.toLowerCase() &&
+      (!editingNote || note.id !== editingNote.id) // Ignore current note while editing
+    );
+
+    if (titleExists) {
+      alert("A note with this title already exists. Please choose a different title.");
+      return;
     }
-    
+
+    if (editingNote) {
+      editNote(editingNote.id, { title: trimmedTitle, desc });
+    } else {
+      addNote({ title: trimmedTitle, desc });
+    }
+
     setTitle('');
     setDesc('');
     setShowModal(false);

@@ -2,21 +2,18 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-  background-image: url('../../assets/background.png'), linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  background: url('../../assets/background.png'), linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-
   min-height: 100vh;
 }
 
 .form-container {
-  padding: 20px;
   max-width: 600px;
   margin: auto;
+  padding: 20px;
 }
 
 .search-section {
@@ -33,32 +30,38 @@ body {
 }
 
 .notes-counts {
-  display: flex !important;
+  display: flex;
   gap: 20px;
   font-size: 16px;
-  color: #222 !important;
-  background: #ffe !important;
-  border: 1px solid #ccc !important;
-  padding: 8px !important;
-  margin-bottom: 10px !important;
+  color: #222;
+  background: #ffe;
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin-bottom: 10px;
   border-radius: 4px;
 }
+
 .notes-counts div {
   margin-bottom: 2px;
+}
+
+.notes-display-area {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
 }
 
 .notes-list {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 16px;
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .note-item {
   position: relative;
-  padding: 0;
   border: 1px solid #ddd;
   border-radius: 8px;
   background: url('../../assets/form_box.jpg') center/cover no-repeat;
@@ -67,15 +70,15 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  min-height: 130px;
-  max-width: 220px;
+  min-height: 180px;
+  max-width: 260px;
 }
 
 .note-item::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   z-index: 0;
 }
 
@@ -87,7 +90,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 100%;
 }
 
 .note-title {
@@ -96,98 +98,43 @@ body {
 }
 
 .note-desc {
-  margin: 8px 0;
+  margin: 8px 0 12px;
   color: #666;
 }
 
 .note-actions {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .edit-btn {
   background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 .delete-btn {
   background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
-.latest-note-card {
-  margin: 30px auto;
-  max-width: 620px;
-  background: #f5f5ff;
-  border: 2px solid #d0d0ff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  font-family: sans-serif;
-  animation: fadeInUp 0.3s ease-in-out;
+.edit-btn:hover {
+  background-color: #3e8e41;
 }
 
-.latest-note-card h3 {
-  margin: 0 0 10px;
-  color: #2c3e50;
-  font-size: 20px;
+.delete-btn:hover {
+  background-color: #d32f2f;
 }
 
-.latest-note-card p {
-  margin: 0;
-  font-size: 16px;
-  color: #555;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.top-box {
-  max-width: 640px;
-  margin: 30px auto;
-  padding: 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  background-image: url('../../assets/background.png'), linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  position: relative;
-  overflow: hidden;
-}
-.top-box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255,255,255,0.7); /* Adjust opacity as needed */
-  z-index: 0;
-}
-.top-box > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* 🔘 Add button style */
 .add-note-btn {
   background-color: #1976d2;
   color: white;
@@ -204,8 +151,30 @@ body {
   background-color: #125ea5;
 }
 
-.notes-display-area {
-  max-width: 1200px;
+.top-box {
+  max-width: 640px;
   margin: 30px auto;
   padding: 20px;
+  background: url('../../assets/background.png'), linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.top-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 0;
+}
+
+.top-box > * {
+  position: relative;
+  z-index: 1;
 }
