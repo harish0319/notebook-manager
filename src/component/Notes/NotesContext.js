@@ -49,5 +49,5 @@ export const NotesProvider = ({ children }) => {
     }}>
       {children}
     </NotesContext.Provider>
-  );
+  );
 };

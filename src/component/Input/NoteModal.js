@@ -14,28 +14,13 @@ const NoteModal = () => {
     }
   }, [editingNote]);
 
-  // const handleSubmit = () => {
-  //   if (!title.trim()) return;
-    
-  //   if (editingNote) {
-  //     editNote(editingNote.id, { title, desc });
-  //   } else {
-  //     addNote({ title, desc });
-  //   }
-    
-  //   setTitle('');
-  //   setDesc('');
-  //   setShowModal(false);
-  // };
-
   const handleSubmit = () => {
     const trimmedTitle = title.trim();
     if (!trimmedTitle) return;
 
-    // Check if title already exists (case-insensitive)
     const titleExists = notes.some(note =>
       note.title.toLowerCase() === trimmedTitle.toLowerCase() &&
-      (!editingNote || note.id !== editingNote.id) // Ignore current note while editing
+      (!editingNote || note.id !== editingNote.id)
     );
 
     if (titleExists) {
